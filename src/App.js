@@ -4,11 +4,13 @@ import {
   labelStyle,
   appStyle,
   formStyle,
+  // colorDivStyle,
 } from './style.js';
 import React, { useState } from 'react';
 import randomColor from 'randomcolor';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+// import { useDvdScreensaver } from 'react-dvd-screensaver';
 
 function App() {
   const [color, setColor] = useState('#FFFFFF');
@@ -16,27 +18,31 @@ function App() {
   const [luminosity, setLuminosity] = useState();
   const [width, setWidth] = useState('400');
   const [height, setHeight] = useState('50');
+  const [displayedWidth, setDisplayedWidth] = useState('400');
+  const [displayedHeight, setDisplayedHeight] = useState('50');
+  const [textColor, setTextColor] = useState('#524949');
 
-  function chooseHue(event) {
-    setHue(event.currentTarget.value);
-  }
-  function chooseLuminosity(event) {
-    setLuminosity(event.currentTarget.value);
-  }
-  function chooseWidth(event) {
-    setWidth(event.currentTarget.value);
-  }
-  function chooseHeight(event) {
-    setHeight(event.currentTarget.value);
-  }
-
+  // Generate random color when "Generate" button is clikced + Change color and dimensions of Generated Color Div
   function handleChange() {
     const newColor = randomColor({
       luminosity: luminosity,
       hue: hue,
     });
     setColor(newColor);
+    setDisplayedWidth(width);
+    setDisplayedHeight(height);
+    luminosity === 'dark' ? setTextColor('#FFFFFF') : setTextColor('#524949');
   }
+
+  // Style Generated Color Div
+  const colorDivStyle = css`
+    display: block;
+    font: Arial, Helvetica, sans-serif;
+    color: #524949;
+    font-size: 2em;
+    margin: 20px;
+    transition: background-color 3s;
+  `;
 
   return (
     <div className="App" css={appStyle}>
@@ -46,7 +52,7 @@ function App() {
           <input
             css={inputStyle}
             className="userInput"
-            onChange={chooseHue}
+            onChange={(event) => setHue(event.currentTarget.value)}
             value={hue}
           />
         </label>{' '}
@@ -56,7 +62,7 @@ function App() {
         <input
           css={inputStyle}
           className="userInput"
-          onChange={chooseLuminosity}
+          onChange={(event) => setLuminosity(event.currentTarget.value)}
           value={luminosity}
         />
       </label>
@@ -65,7 +71,7 @@ function App() {
         <input
           css={inputStyle}
           className="userInput"
-          onChange={chooseWidth}
+          onChange={(event) => setWidth(event.currentTarget.value)}
           value={width}
         />
       </label>
@@ -74,7 +80,7 @@ function App() {
         <input
           css={inputStyle}
           className="userInput"
-          onChange={chooseHeight}
+          onChange={(event) => setHeight(event.currentTarget.value)}
           value={height}
         />
       </label>
@@ -82,14 +88,13 @@ function App() {
         Generate
       </button>
       <div
-        css={labelStyle}
+        css={colorDivStyle}
         style={{
-          margin: '20px',
+          color: textColor,
           backgroundColor: color,
-          width: Number(width),
-          height: Number(height),
+          width: Number(displayedWidth),
+          height: Number(displayedHeight),
           textAlign: 'center',
-          //transition: all 2s ease,
         }}
       >
         Generated color: {color}
