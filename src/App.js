@@ -96,7 +96,7 @@ function App() {
           textAlign: 'center',
         }}
       >
-        Generated color: {color}
+        Generated Color: {color}
       </div>
     </div>
   );
