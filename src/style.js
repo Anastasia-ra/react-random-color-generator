@@ -23,7 +23,6 @@ export const buttonStyle = css`
   color: #ffffff;
   cursor: pointer;
   font-family: 'Arial',
-
   font-weight: 500;
   height: 50px;
   width: 100px;
@@ -45,10 +44,3 @@ export const inputStyle = css`
   height: 40px;
   margin: 20px;
 `;
-
-// export const colorDivStyle = css`
-//   display: block;
-//   font: Arial, Helvetica, sans-serif;
-//   color: #524949;
-//   font-size: 2em;
-// `;

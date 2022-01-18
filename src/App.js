@@ -4,18 +4,17 @@ import {
   labelStyle,
   appStyle,
   formStyle,
-  // colorDivStyle,
 } from './style.js';
 import React, { useState } from 'react';
 import randomColor from 'randomcolor';
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-// import { useDvdScreensaver } from 'react-dvd-screensaver';
+// import { DvdScreensaver } from 'react-dvd-screensaver';
 
 function App() {
   const [color, setColor] = useState('#FFFFFF');
   const [hue, setHue] = useState();
-  const [luminosity, setLuminosity] = useState();
+  const [luminosity, setLuminosity] = useState('');
   const [width, setWidth] = useState('400');
   const [height, setHeight] = useState('50');
   const [displayedWidth, setDisplayedWidth] = useState('400');
